@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Admin | {% endblock %}
+
+
+{% block content %}
+ <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url({% static 'images/admin.png' %});" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+          <div class="col-md-9 ftco-animate pb-5">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home' %}">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Adminstrator <i class="ion-ios-arrow-forward"></i></span></p>
+            <h1 class="mb-3 bread">Adminstrator</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Client Name</th>
+      <th scope="col">Client Phone</th>
+      <th scope="col">Pickup Date</th>
+      <th scope="col">Pick up time</th>
+      <th scope="col">Booked at</th>
+      <th scope="col">Cost per day</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for hiring in car_hirings %}
+    <tr>
+      <th scope="row"><a href="{% url 'hiring-detail' hiring.pk %}">{{ forloop.counter }}</a></th>
+      <td><a href="{% url 'hiring-detail' hiring.pk %}">{{ hiring.client_name }}</a></td>
+      <td>{{ hiring.phone_number }}</td>
+      <td>{{ hiring.pickup_date }}</td>
+      <td>{{ hiring.pickup_time }}</td>
+      <td>{{ hiring.booked_at }}</td>
+      <td>K{{ hiring.vehicle.category.cost_per_day }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<p><a href="{% url 'hirings' %}" class="btn btn-primary py-3 px-4">See all Car Hire requests</a></p>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Client Name</th>
+      <th scope="col">Client Phone</th>
+      <th scope="col">Checkin Date</th>
+      <th scope="col">Checkout Date</th>
+      <th scope="col">Booked At</th>
+      <th scope="col">Cost per day</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for booking in bookings %}
+    <tr>
+      <th scope="row"><a href="{% url 'booking-detail' booking.pk %}">{{ forloop.counter }}</a></th>
+      <td><a href="{% url 'booking-detail' booking.pk %}">{{ booking.client_name }}</a></td>
+      <td>{{ booking.phone_number }}</td>
+      <td>{{ booking.checkin_date }}</td>
+      <td>{{ booking.checkout_date }}</td>
+      <td>{{ booking.booked_at }}</td>
+      <td>K{{ booking.room.category.cost_per_night }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<p><a href="{% url 'bookings' %}" class="btn btn-primary py-3 px-4">See all Room Booking requests</a></p>
+
+{% endblock %}

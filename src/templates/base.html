@@ -1,0 +1,158 @@
+  <!DOCTYPE html>
+  {% load static %}
+  
+<html lang="en">
+  <head>
+    <title>{% block title %}Home{% endblock title %} | Travac</title>
+    <meta charset="utf-8">
+    <link rel="icon" class="rounded-circle" href="{% static 'images/logo.png' %}" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}">
+
+    
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <script defer src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSxuHx6kv7nCnKVh46StwUYR2fus9vWAQ&callback=initMap&libraries=places&v=weekly" defer></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="{% url 'home' %}"><img style="height: 120px; width:130px;" src="{% static 'images/logo.png' %}" alt=""></a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          {% if request.user.id == None %}
+            {% with request.resolver_match.url_name as url_name %}
+	          <li class="nav-item {% if url_name == 'home' %}active{% endif %}"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+	          <li class="nav-item {% if url_name == 'about' %}active{% endif %}"><a href="{% url 'about' %}" class="nav-link">About</a></li>
+	          <li class="nav-item {% if url_name == 'services' %}active{% endif %}"><a href="{% url 'services' %}" class="nav-link">Services</a></li>
+	          <li class="nav-item {% if url_name == 'cars' %}active{% endif %}"><a href="{% url 'cars' %}" class="nav-link">Cars</a></li>
+	          <li class="nav-item {% if url_name == 'appartments' %}active{% endif %}"><a href="{% url 'appartments' %}" class="nav-link">Accomodation</a></li>
+	          <li class="nav-item {% if url_name == 'contact' %}active{% endif %}"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
+            
+            {% endwith %}
+            
+            {% else %}
+	          <li class="nav-item"><a href="{% url 'hirings' %}" class="nav-link">Car Hirings</a></li>
+	          <li class="nav-item"><a href="{% url 'bookings' %}" class="nav-link">Room Bookings</a></li>
+	          <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Logout</a></li>
+            {% endif %}
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+    
+   
+
+    <!-- END nav -->
+    {% block content %}{% endblock content %}
+
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2"><a href="#" class="logo"><img style="height: 150px; width:170px;" src="{% static 'images/logo.png' %}" alt=""></a></h2>
+              <p>TRAVAC</p>
+              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                {% comment %} <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li> {% endcomment %}
+                <li class="ftco-animate"><a href="https://www.facebook.com/profile.php?id=100090136616030&mibextid=LQQJ4d"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="https://instagram.com/travac?igshid=YmMyMTA2M2Y="><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-5">
+              <h2 class="ftco-heading-2">Information</h2>
+              <ul class="list-unstyled">
+                <li><a href="{% url 'about' %}" class="py-2 d-block">About</a></li>
+                <li><a href="{% url 'services' %}" class="py-2 d-block">Services</a></li>
+                {% comment %} <li><a href="#" class="py-2 d-block">Term and Conditions</a></li>
+                <li><a href="#" class="py-2 d-block">Best Price Guarantee</a></li>
+                <li><a href="#" class="py-2 d-block">Privacy &amp; Cookies Policy</a></li> {% endcomment %}
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+             <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Customer Support</h2>
+              <ul class="list-unstyled">
+                {% comment %} <li><a href="#" class="py-2 d-block">FAQ</a></li>
+                <li><a href="#" class="py-2 d-block">Payment Option</a></li>
+                <li><a href="#" class="py-2 d-block">Booking Tips</a></li>
+                <li><a href="#" class="py-2 d-block">How it works</a></li> {% endcomment %}
+                <li><a href="{% url 'contact' %}" class="py-2 d-block">Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                <li><span class="icon icon-map-marker"></span><span class="text">8 Azikiwe Crescent. Northmead, Lusaka, Zambia, Lusaka 10101</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+260 97 7106770</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@travacinvestiments.com</span></a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p>
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | TRAVAC
+ </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+  <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'js/aos.js' %}"></script>
+  <script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+  <script src="{% static 'js/jquery.timepicker.min.js' %}"></script>
+  <script src="{% static 'js/scrollax.min.js' %}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="{% static 'js/google-map.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+    
+  </body>
+</html>

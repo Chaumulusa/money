@@ -1,0 +1,113 @@
+{% extends 'appartments/base.html' %}
+
+{% load static %}
+{% block title %} Rooms |{% endblock %}
+{% block content %}
+
+        <!--================Header Area =================-->
+        
+        <!--================Breadcrumb Area =================-->
+        <section class="breadcrumb_area">
+            <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""></div>
+            <div class="container">
+                <div class="page-cover text-center">
+                    <h2 class="page-cover-tittle">Accomodation</h2>
+                    <ol class="breadcrumb">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li class="active">Accomodation</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+        <!--================Breadcrumb Area =================-->
+        
+        <!--================ Accomodation Area  =================-->
+        <section class="accomodation_area section_gap">
+            <div class="container">
+                <div class="section_title text-center">
+                    {% if vip_appartments %}
+                    <h2 class="title_color">VIP Accomodation</h2>
+                    <p>{{ appartment.description }}</p>
+                </div>
+                
+                <div class="row mb_30">
+                    {% for appartment in vip_appartments %}
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="accomodation_item text-center">
+                            <div class="hotel_img" style="height: 250px;">
+                                <img class="w-100 h-100" src="{{ appartment.thumbnail.url }}" alt="">
+                                <a href="{% url 'book-room' appartment.slug %}" class="btn theme_btn button_hover">Book Now</a>
+                            </div>
+                            <a href="{% url 'room-detail' appartment.slug %}"><h4 class="sec_h4">{{ appartment.appartment_name }} Room</h4></a>
+                            <h5>K{{ appartment.cost_per_night }}<small>/night</small></h5>
+                            <h6><small class="badge badge-warning">{{appartment.status}}</small></h6>
+                        </div>
+                        
+                    </div>
+                    {% endfor %}
+                    </div>
+                    
+                    {% endif %}
+            </div>
+        </section>
+        <section class="accomodation_area section_gap">
+            <div class="container">
+                <div class="section_title text-center">
+
+                    {% if special_appartments %}
+                    <h2 class="title_color">Special Accomodation</h2>
+                    <p>{{ appartment.description }}</p>
+                     {% endif %}
+                </div>
+                
+                <div class="row mb_30">
+                    {% for appartment in special_appartments %}
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="accomodation_item text-center">
+                            <div class="hotel_img" style="height: 250px;">
+                                <img class="w-100 h-100" src="{{ appartment.thumbnail.url }}" alt="">
+                                <a href="{% url 'book-room' appartment.slug %}" class="btn theme_btn button_hover">Book Now</a>
+                            </div>
+                            <a href="{% url 'room-detail' appartment.slug %}"><h4 class="sec_h4">{{ appartment.appartment_name }}</h4></a>
+                            <h5>K{{ appartment.cost_per_night }}<small>/night</small></h5>
+                            <h6><small class="badge badge-warning">{{appartment.status}}</small></h6>
+                        </div>
+                        
+                    </div>
+                    {% endfor %}
+                   
+                </div>
+            </div>
+        </section>
+        <!--================ Accomodation Area  =================-->
+       
+        <!--================ Accomodation Area  =================-->
+        <section class="accomodation_area section_gap">
+            <div class="container">
+                {% if regular_appartments %}
+                <div class="section_title text-center">
+                    
+                    <h2 class="title_color">Regular Accomodation</h2>
+                    <p>{{ appartment.description }}</p>
+                </div>
+                <div class="row accomodation_two">
+                    {% for appartment in regular_appartments %}
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="accomodation_item text-center">
+                            <div class="hotel_img" style="height: 250px;">
+                                <img class="w-100 h-100" src="{{ appartment.thumbnail.url }}" alt="">
+                                <a href="{% url 'book-room' appartment.slug %}" class="btn theme_btn button_hover">Book Now</a>
+                            </div>
+                            <a href="{% url 'room-detail' appartment.slug %}"><h4 class="sec_h4">{{ appartment.appartment_name }}</h4></a>
+                            <h5>K{{appartment.cost_per_night}}<small>/night</small></h5>
+                            <h6><small class="badge badge-warning">{{appartment.status}}</small></h6>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+                {% endif %}
+            </div>
+        </section>
+        <!--================ Accomodation Area  =================-->
+{% endblock %}

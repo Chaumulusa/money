@@ -1,0 +1,89 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="{% static 'images/logo.png' %}" type="image/png">
+        <title> {% block title %} Accommodation {% endblock title %} | Travac </title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'appartments/css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'appartments/vendors/linericon/style.css' %}">
+        <link rel="stylesheet" href="{% static 'appartments/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'appartments/vendors/owl-carousel/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href="{% static 'appartments/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css' %}">
+        <link rel="stylesheet" href="{% static 'appartments/vendors/nice-select/css/nice-select.css' %}">
+        <link rel="stylesheet" href="{% static 'appartments/vendors/owl-carousel/owl.carousel.min.css' %}">
+        <!-- main css -->
+        <link rel="stylesheet" href="{% static 'appartments/css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'appartments/css/responsive.css' %}">
+    </head>
+    <body>
+        <!--================Header Area =================-->
+        <header class="header_area">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand logo_h" href="index.html"><img style="height: 150px; width:130px;" src="{% static 'images/logo.png' %}" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav ml-auto">>
+                            {% if request.user.id == None %}
+                            {% with request.resolver_match.url_name as url_name %}
+                            <li class="nav-item {% if url_name == 'home' %}active{% endif %}"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+                            <li class="nav-item {% if url_name == 'about' %}active{% endif %}"><a href="{% url 'about' %}" class="nav-link">About</a></li>
+                            <li class="nav-item {% if url_name == 'services' %}active{% endif %}"><a href="{% url 'services' %}" class="nav-link">Services</a></li>
+                            <li class="nav-item {% if url_name == 'cars' %}active{% endif %}"><a href="{% url 'cars' %}" class="nav-link">Cars</a></li>
+                            <li class="nav-item {% if url_name == 'appartments' %}active{% endif %}"><a href="{% url 'appartments' %}" class="nav-link">Accomodation</a></li>
+                            <li class="nav-item {% if url_name == 'contact' %}active{% endif %}"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
+                            {% endwith %}
+                            
+                            {% else %}
+                            <li class="nav-item {% if url_name == 'hirings' %}active{% endif %}"><a href="{% url 'hirings' %}" class="nav-link">Car Hirings</a></li>
+                            <li class="nav-item {% if url_name == 'bookings' %}active{% endif %}"><a href="{% url 'bookings' %}" class="nav-link">Room Bookings</a></li>
+                            <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Logout</a></li>
+                            {% endif %}
+                        </ul>
+                    </div> 
+                </nav>
+            </div>
+        </header>
+
+        {% block content %}
+        {% endblock %}
+
+                <!--================ start footer Area  =================-->	
+        <footer class="footer-area section_gap">
+            <div class="container">
+                <div class="border_line"></div>
+                <div class="row footer-bottom text-center">
+                    <p class="col-lg-8 col-sm-12 footer-text m-0 text-center">
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |  TRAVAC
+</p>
+                </div>
+            </div>
+        </footer>
+		<!--================ End footer Area  =================-->
+        
+        
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="{% static 'appartments/js/jquery-3.2.1.min.js' %}"></script>
+        <script src="{% static 'appartments/js/popper.js' %}"></script>
+        <script src="{% static 'appartments/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'appartments/vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'appartments/js/jquery.ajaxchimp.min.js' %}"></script>
+        <script src="{% static 'appartments/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js' %}"></script>
+        <script src="{% static 'appartments/vendors/nice-select/js/jquery.nice-select.js' %}"></script>
+        <script src="{% static 'appartments/js/mail-script.js' %}"></script>
+        <script src="{% static 'appartments/js/stellar.js' %}"></script>
+        <script src="{% static 'appartments/vendors/lightbox/simpleLightbox.min.js' %}"></script>
+        <script src="{% static 'appartments/js/custom.js' %}"></script>
+    </body>
+</html>

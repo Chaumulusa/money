@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Booking-{{car.model_name}} |{% endblock %}
+{% block content %}
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style>
+
+#map {
+  height: 250px;
+  width: 100%%;
+  display: flex;
+  align-items: center;
+}
+
+
+#infowindow-content .title {
+  font-weight: bold;
+}
+
+#infowindow-content {
+  display: none;
+}
+
+#map #infowindow-content {
+  display: inline;
+}
+
+
+#pac-container {
+  padding-bottom: 12px;
+  margin-right: 12px;
+}
+
+.pac-controls {
+  display: inline-block;
+  padding: 5px 11px;
+}
+
+.pac-controls label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+
+</style>
+
+ <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{{car.thumbnail.url}}');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+          <div class="col-md-9 ftco-animate pb-5">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home' %}">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Car details <i class="ion-ios-arrow-forward"></i></span></p>
+            <h1 class="mb-3 bread">Car Details</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+<section class="ftco-section contact-section">
+      <div class="container">
+        <div class="row justify-content-center">
+      		<div class="col-md-12">
+      			<div class="car-details">
+      				<div class="img rounded" style="background-image: url({{car.thumbnail.url}});"></div>
+      				<div class="text text-center">
+      					<span class="subheading">Please Fill Out the form to complete you booking for:</span>
+      					<h2>{{car.model_name}}</h2>
+      				</div>
+      			</div>
+      		</div>
+      	</div>
+        <div class="row d-flex mb-5 contact-info">
+          <div class="col-md-12 block-12 mb-md-5">
+            <form action="." method="POST" class="bg-light p-5 contact-form">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Name</label>
+                <input type="text" name='client_name' class="form-control" placeholder="Your Name" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Driver's Licence</label>
+                <input type="text" name="driving_licence_no" class="form-control" placeholder="Driver's Licence No" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Phone Number</label>
+                <input type="phone" name="phone_number" class="form-control" placeholder="Phone Number" required>
+              </div>
+
+
+
+              <div class="pac-card" id="pac-card">
+                  <div id="strict-bounds-selector" class="pac-controls">
+                  </div>
+              </div>
+              <div id="pac-container">
+                <div class="form-group">
+                <label for="exampleFormControlInput1">Pick Up Location</label>
+                  <input id="pac-input" type="text" name="pickup_location" class="form-control" placeholder="Enter a location" />
+              </div>
+              </div>
+              <div id="map"></div>
+              <div id="infowindow-content">
+                <span id="place-name" class="title"></span><br />
+                <span id="place-address"></span>
+              </div>
+
+
+
+
+
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Pickup Date</label>
+                <input type="date" name="pickup_date" class="form-control" placeholder="Pick Up Date" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Dropoff Date</label>
+                <input type="date" name="dropoff_date" class="form-control" placeholder="Drop Off Date" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Pickup Time</label>
+                <input type="time" name="pickup_time" class="form-control" placeholder="Pick Up Time" required>
+              </div>
+              <div class="form-group">
+                <input type="submit" value="Book Now" class="btn btn-primary py-3 px-5">
+              </div>
+            </form>
+          
+          </div>
+        </div>
+      </div>
+    </section>
+
+	 <section class="ftco-section ftco-no-pt">
+    	<div class="container">
+    		<div class="row justify-content-center">
+          <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+          	<span class="subheading">Choose Car</span>
+            <h2 class="mb-2">Related Cars</h2>
+          </div>
+        </div>
+        <div class="row">
+			{% if related_cars %}
+			{% for car in related_cars %}
+        	<div class="col-md-4">
+				<div class="car-wrap rounded ftco-animate">
+					<div class="img rounded d-flex align-items-end" style="background-image: url({{ car.thumbnail.url }});">
+					</div>
+					<div class="text">
+						<h2 class="mb-0"><a href="#">{{ car.model_name }}</a></h2>
+						<div class="d-flex mb-3">
+							<span class="cat">{{ car.brand_name }}</span>
+							<p class="price ml-auto">{{ car.category.cost_per_day }} <span>/day</span></p>
+						</div>
+						<p class="d-flex mb-0 d-block"><a href="{% url 'book' car.slug %}" class="btn btn-primary py-2 mr-1">Rent now</a> <a href="{% url 'car-detail' car.slug %}" class="btn btn-secondary py-2 ml-1">Details</a></p>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+			{% endif %}
+        </div>
+	</div>
+</section>
+
+{% endblock %}

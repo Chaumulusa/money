@@ -1,0 +1,8 @@
+Django==3.2
+django-storages
+Pillow
+psycopg2
+boto3
+gunicorn
+django-dotenv
+reportlab

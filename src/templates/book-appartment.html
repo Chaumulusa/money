@@ -1,0 +1,54 @@
+{% extends 'appartments/base.html' %}
+{% load static %}
+{% block title %} Booking-{{ appartment.category.get_category_type_display }} |{% endblock %}
+{% block content %}
+
+<section class="breadcrumb_area">
+            <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""></div>
+            <div class="container">
+                <div class="page-cover text-center">
+                    <h2 class="page-cover-tittle">Book Accomodation</h2>
+                    <ol class="breadcrumb">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li class="active">Book Accomodation</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+ <section class="ftco-section contact-section">
+      <div class="container">
+        <div class="row d-flex mb-5 contact-info">
+          <div class="col-md-12 block-12 mb-md-5">
+            <form action="." method="POST" class="bg-light p-5 contact-form">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Name</label>
+                <input type="text" name='client_name' class="form-control" placeholder="Your Name" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Government ID</label>
+                <input type="text" name="gov_id" class="form-control" placeholder="Government Valid ID No" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Phone</label>
+                <input type="text" name="phone_number" class="form-control" placeholder="Phone Number" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Checkin Date</label>
+                <input type="date" name="checkin_date" class="form-control" placeholder="Check In Date" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Checkout Date</label>
+                <input type="date" name="checkout_date" class="form-control" placeholder="Check Out Date" required>
+              </div>
+              <div class="form-group">
+                <input type="submit" value="Book Now" class="btn btn-primary py-3 px-5">
+              </div>
+            </form>
+          
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{hiring.vehicle}} | {% endblock %}
+{% block content %}
+    
+    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{{hiring.vehicle.thumbnail.url}}');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+          <div class="col-md-9 ftco-animate pb-5">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home' %}">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Hiring details <i class="ion-ios-arrow-forward"></i></span></p>
+            <h1 class="mb-3 bread">Hiring Details for {{hiring.vehicle}}</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    		<section class="ftco-section ftco-car-details">
+      <div class="container">
+      	<div class="row justify-content-center">
+      		<div class="col-md-12">
+      			<div class="car-details">
+      				<div class="img rounded" style="background-image: url({{hiring.vehicle.thumbnail.url}});"></div>
+      				<div class="text text-center">
+      					<span class="subheading">{{hiring.vehicle.brand_name}}</span>
+      					<h2>{{hiring.vehicle.model_name}}</h2>
+      				</div>
+      			</div>
+      		</div>
+      	</div>
+      	<div class="row">
+          <div class="col-md d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services">
+              <div class="media-body py-md-4">
+              	<div class="d-flex mb-3 align-items-center">
+	              	<div class="text">
+		                <h3 class="heading mb-0 pl-3">
+		                	Booked By
+		                	<span>{{ hiring.client_name }}</span>
+		                </h3>
+	                </div>
+                </div>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services">
+              <div class="media-body py-md-4">
+              	<div class="d-flex mb-3 align-items-center">
+	              	<div class="text">
+		                <h3 class="heading mb-0 pl-3">
+		                	Client Licence Number
+		                	<span>{{ hiring.driving_licence_no }}</span>
+		                </h3>
+	                </div>
+                </div>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services">
+              <div class="media-body py-md-4">
+              	<div class="d-flex mb-3 align-items-center">
+	              	<div class="text">
+		                <h3 class="heading mb-0 pl-3">
+		                	Client Phone Number
+		                	<span>{{ hiring.phone_number }}</span>
+		                </h3>
+	                </div>
+                </div>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services">
+              <div class="media-body py-md-4">
+              	<div class="d-flex mb-3 align-items-center">
+	              	<div class="text">
+		                <h3 class="heading mb-0 pl-3">
+		                	Pickup Location
+		                	<span>{{ hiring.pickup_location }}</span>
+		                </h3>
+	                </div>
+                </div>
+              </div>
+            </div>      
+          </div>
+
+
+          <div class="col-md d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services">
+              <div class="media-body py-md-4">
+              	<div class="d-flex mb-3 align-items-center">
+	              	{% comment %} <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-backpack"></span></div> {% endcomment %}
+	              	<div class="text">
+		                <h3 class="heading mb-0 pl-3">
+		                	Pickup Date
+		                	<span>{{ hiring.pickup_date }}</span>
+		                </h3>
+	                </div>
+                </div>
+              </div>
+            </div>      
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services">
+              <div class="media-body py-md-4">
+              	<div class="d-flex mb-3 align-items-center">
+	              	{% comment %} <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-diesel"></span></div> {% endcomment %}
+	              	<div class="text">
+		                <h3 class="heading mb-0 pl-3">
+		                	Dropoff Date
+		                	<span>{{ hiring.dropoff_date }}</span>
+		                </h3>
+	                </div>
+                </div>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services">
+              <div class="media-body py-md-4">
+              	<div class="d-flex mb-3 align-items-center">
+	              	{% comment %} <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-diesel"></span></div> {% endcomment %}
+	              	<div class="text">
+		                <h3 class="heading mb-0 pl-3">
+		                	Pick Up Time
+		                	<span>{{ hiring.pickup_time }}</span>
+		                </h3>
+	                </div>
+                </div>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services">
+              <div class="media-body py-md-4">
+              	<div class="d-flex mb-3 align-items-center">
+	              	{% comment %} <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-diesel"></span></div> {% endcomment %}
+	              	<div class="text">
+		                <h3 class="heading mb-0 pl-3">
+		                	Booked At
+		                	<span>{{ hiring.booked_at }}</span>
+		                </h3>
+	                </div>
+                </div>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services">
+              <div class="media-body py-md-4">
+              	<div class="d-flex mb-3 align-items-center">
+	              	{% comment %} <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-diesel"></span></div> {% endcomment %}
+	              	<div class="text">
+		                <h3 class="heading mb-0 pl-3">
+		                	Cost Per Day
+		                	<span>K{{ hiring.vehicle.category.cost_per_day }}</span>
+		                </h3>
+	                </div>
+                </div>
+              </div>
+            </div>      
+          </div>
+        </div>
+        <p><a href="{% url 'gen-pdf' hiring.pk %}" class="btn btn-primary text-center py-3 px-4">Download receipt pdf</a></p>
+
+      	</div>
+      </div>
+    </section>
+
+
+{% endblock %}
